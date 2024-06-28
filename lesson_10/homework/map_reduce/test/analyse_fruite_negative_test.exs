@@ -4,10 +4,10 @@ defmodule AnalyseFruitsNegativeTest do
   alias AnalyseFruitsMP, as: A
 
   setup_all context do
-    Logger.configure(level: :emergency) # don't write crashes to standard output
+    # don't write crashes to standard output
+    Logger.configure(level: :emergency)
     context
   end
-  
 
   test "data_4 invalid file" do
     files = [
@@ -16,6 +16,7 @@ defmodule AnalyseFruitsNegativeTest do
       "./data/data_3.csv",
       "./data/data_4.csv"
     ]
+
     res = assert A.start(files)
     {:error, {{:badmatch, _}, _}} = res
 
@@ -30,12 +31,11 @@ defmodule AnalyseFruitsNegativeTest do
       "./data/data_3.csv",
       "./data/data_5.csv"
     ]
+
     res = assert A.start(files)
     {:error, {%File.Error{reason: :enoent}, _}} = res
 
     res = assert A.start(files, 2)
     {:error, {%File.Error{reason: :enoent}, _}} = res
   end
-  
-
 end

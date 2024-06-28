@@ -20,6 +20,7 @@ defmodule MapReduce.MixProject do
 
   defp deps do
     [
+      {:mix_test_watch, "~> 1.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1", only: [:dev], runtime: false}
     ]
   end
